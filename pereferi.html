@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Периферийные устройства</title>
+    <link rel="stylesheet" href="pereferi.css">
+</head>
+<body>
+    <div>
+    <header class="header">
+        <div class="container">
+            <div class="logo">JCompony</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="catalog.html" class="nav-link">Каталог</a>
+                <a href="promotions.html" class="nav-link">Акции</a>
+            </nav>
+        </div>
+    </header>
+
+        <!-- Фильтры -->
+        <div class="filiters">
+            <button onclick="filterPeripherals('all')" class="filter-btn active" data-type="all">Все</button>
+            <button onclick="filterPeripherals('keyboard')" class="filter-btn" data-type="keyboard">Клавиатуры</button>
+            <button onclick="filterPeripherals('mouse')" class="filter-btn" data-type="mouse">Мыши</button>
+            <button onclick="filterPeripherals('headphones')" class="filter-btn" data-type="headphones">Наушники</button>
+            <button onclick="filterPeripherals('webcam')" class="filter-btn" data-type="webcam">Веб‑камеры</button>
+        </div>
+
+        <!-- Блок для отображения периферии -->
+        <div id="peripherals"></div>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <button id="prev-page" onclick="prevPage()" disabled>Назад</button>
+            <span id="page-info">Страница 1</span>
+            <button id="next-page" onclick="nextPage()">Вперёд</button>
+        </div>
+
+
+    <script>
+        // Данные о периферийных устройствах
+        const peripherals = [
+            { id: 1, name: "Клавиатура Logitech G Pro", type: "keyboard", price: "8 000 руб.", image: "https://avatars.mds.yandex.net/get-mpic/5234850/2a0000019560e5731d56a8565c85a66923e7/orig" },
+            { id: 2, name: "Мышь Razer DeathAdder V2", type: "mouse", price: "5 000 руб.", image: "https://avatars.mds.yandex.net/i?id=82fb3692325fd718fe1a9de9c5670323_l-9875416-images-thumbs&n=13" },
+            { id: 3, name: "Наушники Sony WH‑1000XM4", type: "headphones", price: "25 000 руб.", image: "https://4pda.to/s/as6ywyGsRMTZXodgMkXs2SdF4Uae.jpg" },
+            { id: 4, name: "Веб‑камера Logitech C920", type: "webcam", price: "7 000 руб.", image: "https://ir.ozone.ru/s3/multimedia-4/6352105960.jpg" },
+            { id: 5, name: "Клавиатура HyperX Alloy Origins", type: "keyboard", price: "9 000 руб.", image: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/206/497/771/103/013/5/100052029686b4.jpg" },
+            { id: 6, name: "Мышь Logitech G502", type: "mouse", price: "4 500 руб.", image: "https://avatars.mds.yandex.net/i?id=011f840bb58e63b29642ff3c76f67469_l-4936976-images-thumbs&n=13" },
+            { id: 7, name: "Наушники JBL Quantum 100", type: "headphones", price: "3 500 руб.", image: "https://via.placeholder.com/300x200?text=Наушники+JBL" },
+            { id: 8, name: "Веб‑камера Razer Kiyo", type: "webcam", price: "10 000 руб.", image: "https://via.placeholder.com/300x200?text=Веб-камера+Razer" }
+        ];
+
+        const itemsPerPage = 3;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        // Функция отображения периферии
+        function renderPeripherals() {
+            const filteredPeripherals = currentFilter === 'all'
+                ? peripherals
+                : peripherals.filter(p => p.type === currentFilter);
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pagePeripherals = filteredPeripherals.slice(start, end);
+
+            const peripheralsContainer = document.getElementById('peripherals');
+            peripheralsContainer.innerHTML = '';
+
+            pagePeripherals.forEach(peripheral => {
+                const peripheralElement = document.createElement('div');
+                // Уникальные классы:
+                // peripheral-card — общий класс для всех карточек
+                // peripheral-card-{id} — уникальный класс по ID
+                // peripheral-{type} — класс по типу устройства
+                peripheralElement.className = `peripheral-card peripheral-card-${peripheral.id} peripheral-${peripheral.type}`;
+                peripheralElement.innerHTML = `
+                    <h3>${peripheral.name}</h3>
+            <img src="${peripheral.image}" alt="${peripheral.name}" width="200">
+            <p>Тип: ${peripheral.type}</p>
+            <p class="price">Цена: ${peripheral.price}</p>
+                `;
+                peripheralsContainer.appendChild(peripheralElement);
+            });
+
+            // Обновление состояния кнопок пагинации
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = end >= filteredPeripherals.length;
+            document.getElementById('page-info').textContent = `Страница ${currentPage}`;
+        }
+
+        // Функции фильтрации
+        function filterPeripherals(type) {
+            currentFilter = type;
+            currentPage = 1; // Сбрасываем на первую страницу при смене фильтра
+            renderPeripherals();
+
+            // Обновляем активные кнопки фильтров
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Функции пагинации
+        function nextPage() {
+            if (document.getElementById('next-page').disabled) return;
+            currentPage++;
+            renderPeripherals();
+        }
+
+        function prevPage() {
+            if (document.getElementById('prev-page').disabled) return;
+            currentPage--;
+            renderPeripherals();
+        }
+
+        // Инициализация при загрузке страницы
+        window.onload = renderPeripherals;
+    </script>
+</body>
+</html>

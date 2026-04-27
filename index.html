@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCompony</title>
+    <link rel="stylesheet" href="style.css">
+     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+</head>
+<body>
+    
+    <header class="header">
+
+        <div class="logo">
+            <h2 class="name">JCompony</h2>
+        </div>
+
+    <button class="burger-menu">
+    <span class="burg"></span>
+    <span class="burg"></span>
+    <span class="burg"></span>
+  </button>
+
+  <nav class="main-menu">
+    <ul>
+      <li><a href="catalog.html">Каталог товаров</a></li>
+      <li><a href="promotions.html">Акции</a></li>
+      <li><a href="services.html">Услуги</a></li>
+      <li><a href="support.html">Поддержка</a></li>
+    <!-- Кнопка калькулятора -->
+      <li><a href="loan-calculator.html" class="calculator-btn">Кредитный калькулятор</a></li>
+    </ul>
+  </nav>
+
+    <div class="header-right">
+    <div class="search-icon">🔍</div>
+    <div class="cart">Корзина (0)</div>
+  </div>
+
+    </header>
+
+     <div class="overlay" id="overlay"></div>
+
+     <nav class="meny" id="nav">
+            <ul class="nav-list" id="navList">
+                <li><a href="catalog.html" class="nav-link">каталог</a></li>
+                <li><a href="services.html" class="nav-link">Услуги</a></li>
+                <li><a href="support.html" class="nav-link">Поддержка</a></li>
+                <li><a href="loan-calculator.html" class="nav-link">Кредитный калькулятор</a></li>
+                <li><a href="" class="nav-item-has-children">
+                    <!-- <button class="nav-link dropdown-toggle"></button> -->
+                    <ul class="submenu">
+                        <li><a href="" class="submenu-link"></a></li>
+                        <li><a href="" class="submenu-link"></a></li>
+                        <li><a href="" class="submenu-link"></a></li>
+                    </ul>
+                </a></li>
+                <li><a href="" class="nav-link"></a></li>
+                <li><a href="" class="nav-link"></a></li>
+            </ul>
+        </nav>
+
+<section class="categories">
+      <h2>Популярные категории</h2>
+      <div class="category-grid">
+        <button class="category-card">
+          <a href="laptops.html"><h3>Ноутбуки</h3></a>
+          <p>Более 500 моделей</p>
+        </button>
+        <button class="category-card">
+         <a href="accessories.html"><h3>Комплектующие</h3></a> 
+          <p>Процессоры, видеокарты, ОЗУ</p>
+        </button>
+        <button class="category-card">
+         <a href="monitors.html"><h3>Мониторы</h3></a> 
+          <p>От 24" до 32"</p>
+        </button>
+        <button class="category-card">
+          <a href="pereferi.html"><h3>Периферия</h3></a>
+          <p>Клавиатуры, мыши, гарнитуры</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- Рекомендуемые товары -->
+    <section class="recommended">
+      <h2>Рекомендуем</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://cdn1.technopark.ru/technopark/photos_resized/product/1000_1000/191119/3_191119.jpg" alt="Товар 1">
+          <h3>Игровой ноутбук XYZ-500</h3>
+          <p class="price">89 999 ₽</p>
+          <button class="add-to-cart">В корзину</button>
+        </div>
+        <div class="product-card">
+          <img src="https://www.regard.ru/api/photo/goods/5980287.webp" alt="Товар 2">
+          <h3>Видеокарта RTX 4060</h3>
+          <p class="price">34 999 ₽</p>
+          <button class="add-to-cart">В корзину</button>
+        </div>
+        <div class="product-card">
+          <img src="https://tm.by/sites/default/files/styles/uc_product_full/public/content/product/2025/10/8/i957228-20251020_1.jpg" alt="Товар 3">
+          <h3>Монитор 27" 144 Гц</h3>
+          <p class="price">22 499 ₽</p>
+          <button class="add-to-cart">В корзину</button>
+        </div>
+      </div>
+    </section>
+
+     <div class="carousel-container">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <!-- 10 карточек -->
+        <div class="carousel-item active">
+          <h3>наушники для игр</h3>
+          <img class="cardimg" src="https://img-edg.joomcdn.net/801196b087476581327d25331a1dc8f7daeb60aa_original.jpeg" alt="">
+          <p>Активное шумоподавление: изолируйте звук и слушайте его, используя специальный чип шумоподавления. При приеме и анализе дополнительного шума в наушниках генерируется противоположный сигнал для его подавления.
+Комфорт без давления: благодаря высокоэластичной конструкции головной балки протеиновая кожа головы мягкая. Давление при ношении низкое, а легкая конструкция обеспечивает легкость тела.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>RTX 3060</h3>
+          <img class="cardimg" src="https://ir.ozone.ru/s3/multimedia-1-5/c500/7378259261.jpg" alt="">
+          <p>MSI Видеокарта GeForce RTX 3060 Ti на 8 ГБ</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Микрофон MAONO</h3>
+          <img class="cardimg" src="https://static.onlinetrade.ru/img/items/b/mikrofon_maono_au_pm461tr_rgb_3488996_1.jpg" alt="">
+          <p>Микрофон MAONO AU-PM461TR RGB</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Eilik</h3>
+          <img class="cardimg" src="https://avatars.mds.yandex.net/get-mpic/15219702/2a00000197ab2f958e662eee374adca9131a/orig" alt="">
+        </div>
+        <div class="carousel-item">
+          <h3>Клавиатура</h3>
+          <img class="cardimg" src="https://gfpower.ru/image/cache/catalog/Goods/PC-access/Keyboard/KGK-25U-SIL-2-1000x1000.jpg" alt="">
+          <p>Клавиатура проводная игровая Dialog Gan-Kata KGK-25U</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Bonsai</h3>
+          <img class="cardimg" src="https://i.pinimg.com/originals/fe/8b/43/fe8b434b8b4d18f79c349b32d7e0b26a.jpg" alt="">
+          <p>Настольное дерево скрасит любой стол</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Кулер</h3>
+          <img class="cardimg" src="https://ir-3.ozone.ru/s3/multimedia-1-d/w1200/7199457421.jpg" alt="">
+          <p>Кулер для пк с подстветкой</p>
+        </div>
+        <div class="carousel-item">
+          <h3>RTX 4070 Super</h3>
+          <img class="cardimg" src="https://3dnews.ru/assets/external/illustrations/2024/03/29/1102478/COLORFUL-RTX4070TI-SUPER-FOG-HILL-HERO-1200x624.jpg" alt="">
+          <p>GeForce RTX 4070 Super в чёрно-золотом окрасе</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Кошечка</h3>
+          <img class="cardimg" src="https://avatars.mds.yandex.net/get-mpic/16233762/2a00000196fc9982a07279289eabd71e7e0b/orig" alt="">
+          <p>Мялка-антистресс </p>
+        </div>
+        <div class="carousel-item">
+          <h3>ночник</h3>
+          <img class="cardimg" src="https://img.joomcdn.net/d06da3636b07f21c5530eb26e64f9b2d53417e22_original.jpeg" alt="">
+          <p>Прекрасный милый кот</p>
+        </div>
+      </div>
+
+      <!-- Кнопки навигации -->
+      <button class="carousel-btn prev" id="prevBtn">‹</button>
+      <button class="carousel-btn next" id="nextBtn">›</button>
+    </div>
+
+    <!-- Индикаторы -->
+    <div class="indicators" id="indicators">
+      <!-- Будут созданы динамически через JS -->
+    </div>
+  </div>
+
+    <!-- Преимущества -->
+    <section class="advantages">
+      <h2>Почему выбирают нас</h2>
+      <div class="advantages-grid">
+        <div class="advantage">
+          <h3>Гарантия 2 года</h3>
+          <p>Официальная гарантия на все товары</p>
+        </div>
+        <div class="advantage">
+          <h3>Быстрая доставка</h3>
+          <p>Доставим завтра или в удобный день</p>
+        </div>
+        <div class="advantage">
+          <h3>Поддержка 24/7</h3>
+          <p>Поможем с выбором и настройкой</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+ 
+
+<script>
+    const {animate} = anime;
+
+const barger = document.querySelector(".burger-menu");
+const nav = document.querySelector("#nav");
+const navList = document.querySelector("#navList");
+const dropdownToggle = document.querySelector(".dropdown-toggle");
+const submeny = document.querySelector(".submeny");
+const overlay = document.querySelector("#overlay")
+function toggleMenu(){
+    barger.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    navList.classList.toggle("active")
+}
+
+barger.addEventListener("click",toggleMenu);
+document.addEventListener('DOMContentLoaded', function() {
+  const carouselInner = document.querySelector('.carousel-inner');
+  const items = document.querySelectorAll('.carousel-item');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const indicatorsContainer = document.getElementById('indicators');
+  let currentIndex = 0;
+  const itemWidth = 100; // ширина каждого слайда в %
+  let autoSlideInterval;
+
+  // Создаём индикаторы
+  items.forEach((_, index) => {
+    const indicator = document.createElement('div');
+    indicator.classList.add('indicator');
+    if (index === 0) indicator.classList.add('active');
+    indicator.addEventListener('click', () => goToSlide(index));
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  const indicators = document.querySelectorAll('.indicator');
+
+  function goToSlide(index) {
+    // Ограничиваем индекс допустимыми значениями
+    if (index < 0) index = items.length - 1;
+    if (index >= items.length) index = 0;
+    currentIndex = index;
+
+    // Сдвигаем контейнер
+    carouselInner.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+
+    // Обновляем активный слайд
+    items.forEach((item, i) => {
+      item.classList.toggle('active', i === currentIndex);
+    });
+
+    // Обновляем активные индикаторы
+    indicators.forEach((indicator, i) => {
+      indicator.classList.toggle('active', i === currentIndex);
+    });
+
+    // Перезапускаем автопрокрутку
+    resetAutoSlide();
+  }
+
+  // Обработчики кнопок
+  prevBtn.addEventListener('click', () => {
+    goToSlide(currentIndex - 1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    goToSlide(currentIndex + 1);
+  });
+
+  // Автопрокрутка каждые 4 секунды
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, 4000);
+  }
+
+  // Сброс автопрокрутки при ручном взаимодействии
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
+  // Запускаем автопрокрутку при загрузке
+  startAutoSlide();
+
+  // Останавливаем автопрокрутку, когда пользователь наводит курсор на карусель
+  const carouselContainer = document.querySelector('.carousel-container');
+  
+  carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+  });
+  
+  carouselContainer.addEventListener('mouseleave', () => {
+    startAutoSlide();
+  });
+});
+
+
+
+</script>
+
+</body>
+</html>

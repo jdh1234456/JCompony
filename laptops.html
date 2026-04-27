@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ноутбуки в продаже</title>
+    <link rel="stylesheet" href="laptops.css">
+</head>
+<body>
+    <div>
+    <header class="header">
+        <div class="container">
+            <div class="logo">JCompony</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="catalog.html" class="nav-link">Каталог</a>
+                <a href="promotions.html" class="nav-link">Акции</a>
+            </nav>
+        </div>
+    </header>
+
+        <!-- Фильтры -->
+        <div>
+            <button onclick="filterProducts('all')" class="filter-btn active" data-color="all">Все</button>
+            <button onclick="filterProducts('white')" class="filter-btn" data-color="white">Белые</button>
+            <button onclick="filterProducts('orange')" class="filter-btn" data-color="orange">Оранжевые</button>
+            <button onclick="filterProducts('orange-gray')" class="filter-btn" data-color="orange-gray">Оранжево‑серые</button>
+        </div>
+
+        <!-- Блок для отображения товаров -->
+        <div id="products"></div>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <button class="buttonLown" id="prev-page" onclick="prevPage()" disabled>Назад</button>
+            <span id="page-info">Страница 1</span>
+            <button class="buttonNext" id="next-page" onclick="nextPage()">Вперёд</button>
+        </div>
+
+
+    </div>
+
+    <script>
+   // Данные о ноутбуках
+const products = [
+    { id: 1, name: "Ноутбук A", color: "white", price: "50 000 руб.", image: "https://avatars.mds.yandex.net/get-mpic/11404302/2a00000196399137de42b36add9916b39020/orig" },
+    { id: 2, name: "Ноутбук B", color: "orange", price: "60 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжевый+ноутбук" },
+    { id: 3, name: "Ноутбук C", color: "orange-gray", price: "70 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжево-серый+ноутбук" },
+    { id: 4, name: "Ноутбук D", color: "white", price: "55 000 руб.", image: "https://via.placeholder.com/300x200?text=Белый+ноутбук+2" },
+    { id: 5, name: "Ноутбук E", color: "orange", price: "65 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжевый+ноутбук+2" },
+    { id: 6, name: "Ноутбук F", color: "orange-gray", price: "75 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжево-серый+ноутбук+2" }
+];
+
+const itemsPerPage = 3;
+let currentPage = 1;
+let currentFilter = 'all';
+
+// Функция отображения товаров
+function renderProducts() {
+    const filteredProducts = currentFilter === 'all'
+        ? products
+        : products.filter(p => p.color === currentFilter);
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageProducts = filteredProducts.slice(start, end);
+
+    const productsContainer = document.getElementById('products');
+    productsContainer.innerHTML = '';
+
+    pageProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        // Уникальный класс для каждой карточки: product-card-{id}
+        // Общий класс по цвету: product-{color}
+        productElement.className = `product-card product-card-${product.id} product-${product.color}`;
+        productElement.innerHTML = `
+            <h3>${product.name}</h3>
+            <img src="${product.image}" alt="${product.name}" width="200">
+            <p>Цвет: ${product.color}</p>
+            <p class="price">Цена: ${product.price}</p>
+        `;
+        productsContainer.appendChild(productElement);
+    });
+
+    // Обновление состояния кнопок пагинации
+    document.getElementById('prev-page').disabled = currentPage === 1;
+    document.getElementById('next-page').disabled = end >= filteredProducts.length;
+    document.getElementById('page-info').textContent = `Страница ${currentPage}`;
+}
+
+// Функции фильтрации
+function filterProducts(color) {
+    currentFilter = color;
+    currentPage = 1; // Сбрасываем на первую страницу при смене фильтра
+    renderProducts();
+
+    // Обновляем активные кнопки фильтров
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+}
+
+// Функции пагинации
+function nextPage() {
+    if (document.getElementById('next-page').disabled) return;
+    currentPage++;
+    renderProducts();
+}
+
+function prevPage() {
+    if (document.getElementById('prev-page').disabled) return;
+    currentPage--;
+    renderProducts();
+}
+
+// Инициализация при загрузке страницы
+window.onload = renderProducts;
+
+    </script>
+</body>
+</html>

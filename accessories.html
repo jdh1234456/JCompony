@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCompony</title>
+    <link rel="stylesheet" href="accessories.css">
+     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">JCompony</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="catalog.html" class="nav-link">Каталог</a>
+                <a href="promotions.html" class="nav-link">Акции</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <div class="container">
+            <h1 class="title">Комплектующие ПК</h1>
+
+            <!-- Секция выбора компонентов -->
+            <section class="configurator">
+                <div class="component">
+                    <h3>Процессор</h3>
+                    <select class="select">
+                        <option>Выберите процессор</option>
+                        <option>Intel Core i5-12400F</option>
+                        <option>AMD Ryzen 5 5600X</option>
+                    </select>
+                </div>
+                <div class="component">
+                    <h3>Видеокарта</h3>
+                    <select class="select">
+                        <option>Выберите видеокарту</option>
+                        <option>NVIDIA GeForce RTX 3060</option>
+                        <option>AMD Radeon RX 6600</option>
+                    </select>
+                </div>
+                <div class="component">
+                    <h3>Оперативная память</h3>
+                    <select class="select">
+                        <option>Выберите ОЗУ</option>
+                        <option>16 ГБ DDR4 3200 МГц</option>
+                        <option>32 ГБ DDR4 3600 МГц</option>
+                    </select>
+                </div>
+                <div class="component">
+                    <h3>Накопитель</h3>
+                    <select class="select">
+                        <option>Выберите накопитель</option>
+                        <option>SSD 500 ГБ M.2</option>
+                        <option>SSD 1 ТБ M.2</option>
+                    </select>
+                </div>
+                <div class="component">
+                    <h3>Блок питания</h3>
+                    <select class="select">
+                        <option>Выберите БП</option>
+                        <option>600 Вт 80+ Bronze</option>
+                        <option>750 Вт 80+ Gold</option>
+                    </select>
+                </div>
+                <div class="component">
+                    <h3>Корпус</h3>
+                    <select class="select">
+                        <option>Выберите корпус</option>
+                        <option>ATX Mid Tower</option>
+                        <option>Micro-ATX Mini Tower</option>
+                    </select>
+                </div>
+            </section>
+
+          <!-- Итоговая стоимость -->
+<div class="total">
+    <h3>Итоговая стоимость: <span class="price" id="total-price">0 ₽</span></h3>
+    <div id="build-details" class="build-details"></div>
+    <button class="btn btn-primary" id="assemble-btn">Собрать ПК</button>
+</div>
+
+
+            <!-- Готовые сборки -->
+            <section class="builds">
+                <h2 class="section-title">Готовые сборки</h2>
+                <div class="build-cards">
+                    <div class="build-card">
+                        <h4>Бюджетная сборка</h4>
+                        <p>Intel Core i3, GTX 1650, 8 ГБ ОЗУ</p>
+                        <span class="price">45 000 ₽</span>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                    <div class="build-card">
+                        <h4>Игровая сборка</h4>
+                        <p>Ryzen 5, RTX 3060, 16 ГБ ОЗУ</p>
+                        <span class="price">85 000 ₽</span>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                    <div class="build-card">
+                        <h4>Профессиональная сборка</h4>
+                        <p>Core i7, RTX 4070, 32 ГБ ОЗУ</p>
+                        <span class="price">150 000 ₽</span>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кнопки на периферию -->
+            <section class="peripherals">
+                <h2 class="section-title">Периферия и мониторы</h2>
+                <div class="buttons">
+                     <button class="category-card">
+         <a href="monitors.html"><h3>Мониторы</h3></a> 
+          <p>От 24" до 32"</p>
+        </button>
+        <button class="category-card">
+          <a href="pereferi.html"><h3>Периферия</h3></a>
+          <p>Клавиатуры, мыши, гарнитуры</p>
+        </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const {animate} = anime;
+
+        // Цены на компоненты (в рублях)
+const prices = {
+    'Intel Core i5-12400F': 15000,
+    'AMD Ryzen 5 5600X': 14000,
+    'NVIDIA GeForce RTX 3060': 35000,
+    'AMD Radeon RX 6600': 28000,
+    '16 ГБ DDR4 3200 МГц': 4500,
+    '32 ГБ DDR4 3600 МГц': 8000,
+    'SSD 500 ГБ M.2': 3000,
+    'SSD 1 ТБ M.2': 6000,
+    '600 Вт 80+ Bronze': 3500,
+    '750 Вт 80+ Gold': 6000,
+    'ATX Mid Tower': 2500,
+    'Micro-ATX Mini Tower': 1800
+};
+
+// Элементы DOM
+const totalPriceElement = document.getElementById('total-price');
+const buildDetailsElement = document.getElementById('build-details');
+const assembleBtn = document.getElementById('assemble-btn');
+const selects = document.querySelectorAll('.select');
+
+// Функция пересчёта стоимости
+function updateTotal() {
+    let total = 0;
+    let details = [];
+
+    selects.forEach(select => {
+        const value = select.value;
+        if (value && prices[value]) {
+            total += prices[value];
+            details.push(`${value}: ${prices[value]} ₽`);
+        }
+    });
+
+    // Обновляем отображение
+    totalPriceElement.textContent = `${total} ₽`;
+    buildDetailsElement.innerHTML = details.map(item => `<div>${item}</div>`).join('');
+}
+
+// Добавляем обработчики событий на все выпадающие списки
+selects.forEach(select => {
+    select.addEventListener('change', updateTotal);
+});
+
+// Обработчик кнопки «Собрать ПК»
+assembleBtn.addEventListener('click', function() {
+    const total = totalPriceElement.textContent;
+    alert(`Ваш ПК собран! Итоговая стоимость: ${total}\n\nСостав сборки:\n${buildDetailsElement.textContent}`);
+});
+
+// Инициализация: считаем стоимость при загрузке страницы
+updateTotal();
+
+    </script>
+
+
+</body>
+</html>

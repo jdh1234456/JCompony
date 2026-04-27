@@ -1,0 +1,186 @@
+/* Базовые стили слайдера */
+.themed-slider {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: #333;
+}
+
+/* Переключатель тем */
+.theme-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.theme-btn {
+  padding: 10px 20px;
+  border: 2px solid #ff6b00;
+  background: transparent;
+  color: #ff6b00;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.theme-btn.active {
+  background: #ff6b00;
+  color: white;
+}
+
+.theme-btn:hover {
+  background: #ff6b00;
+  color: white;
+}
+
+/* Контейнер слайдера */
+.slider {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Слайды */
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Контент на слайде */
+.slide-content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 5;
+}
+
+.slide[data-theme="original"] .slide-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+}
+
+.slide[data-theme="jungle"] .slide-content {
+  background: linear-gradient(to top, rgba(0,50,0,0.8), transparent);
+  color: #fffde7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.slide[data-theme="fog"] .slide-content {
+  background: linear-gradient(to top, rgba(30,30,60,0.9), transparent);
+  color: #e0f7fa;
+  text-shadow: 0 0 10px rgba(135,206,235,0.5);
+}
+
+.slide-content h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.slide-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Кнопка на слайде */
+.btn-slider {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff8c33 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn-slider:hover {
+  background: linear-gradient(135deg, #e65100 0%, #ff6b00 100%);
+}
+
+/* Стрелки навигации */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.BigCardBoss{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.CARD{
+  border: solid #e65100;
+  border-radius: 15px;
+padding: 15px;
+text-align: center;
+
+}
+
+.textone{
+  text-align: start;
+}
+
+.header {
+background-color: #fff;
+border-bottom: 2px solid #ff6b00;
+  padding: 15px 20px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d4550c;
+  text-decoration: none;
+}
+.main-menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+}
+
+.main-menu a {
+  text-decoration: none;
+  color: #a13d02;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.main-menu a:hover {
+  color: #2560a8;
+}
+

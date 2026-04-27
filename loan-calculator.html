@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+</head>
+<body>
+            <div class="loan-calculator">
+  <h2>Кредитный калькулятор</h2>
+
+  <!-- Форма ввода данных -->
+  <div class="input-section">
+    <div class="form-group">
+      <label for="amount">Сумма кредита, ₽</label>
+      <input type="number" id="amount" value="500000" min="10000" max="10000000">
+    </div>
+
+    <div class="form-group">
+      <label for="term">Срок кредита, месяцев</label>
+      <input type="number" id="term" value="24" min="6" max="60">
+    </div>
+
+    <div class="form-group">
+      <label for="rate">Процентная ставка, %</label>
+      <input type="number" id="rate" value="12" min="1" max="50" step="0.1">
+    </div>
+
+    <button id="calculate">Рассчитать</button>
+  </div>
+
+  <!-- Результаты расчёта -->
+  <div class="results">
+    <h3>Результаты расчёта</h3>
+    <div class="result-item">
+      <span>Ежемесячный платёж:</span>
+      <strong id="monthly-payment">0 ₽</strong>
+    </div>
+    <div class="result-item">
+      <span>Общая сумма выплат:</span>
+      <strong id="total-payment">0 ₽</strong>
+    </div>
+    <div class="result-item">
+      <span>Переплата по процентам:</span>
+      <strong id="overpayment">0 ₽</strong>
+      <script>
+   const {animate} = anime;
+   document.addEventListener('DOMContentLoaded', function() {
+  const amountInput = document.getElementById('amount');
+  const termInput = document.getElementById('term');
+  const rateInput = document.getElementById('rate');
+  const calculateBtn = document.getElementById('calculate');
+  const addToComparisonBtn = document.getElementById('add-to-comparison');
+  const comparisonTable = document.querySelector('#comparison-table tbody');
+
+  // Функция расчёта аннуитетного платежа
+  function calculateLoan(amount, term, rate) {
+    const monthlyRate = rate / 100 / 12;
+    const payment = amount * monthlyRate * Math.pow(1 + monthlyRate, term) /
+                 (Math.pow(1 + monthlyRate, term) - 1);
+    const totalPayment = payment * term;
+    const overpayment = totalPayment - amount;
+
+    return {
+      monthlyPayment: Math.round(payment),
+      totalPayment: Math.round(totalPayment),
+      overpayment: Math.round(overpayment)
+    };
+  }
+
+  // Обновление результатов
+  function updateResults() {
+    const amount = parseFloat(amountInput.value);
+    const term = parseInt(termInput.value);
+    const rate = parseFloat(rateInput.value);
+
+    const result = calculateLoan(amount, term, rate);
+
+    document.getElementById('monthly-payment').textContent =
+      result.monthlyPayment.toLocaleString() + ' ₽';
+    document.getElementById('total-payment').textContent =
+      result.totalPayment.toLocaleString() + ' ₽';
+    document.getElementById('overpayment').textContent =
+      result.overpayment.toLocaleString() + ' ₽';
+  }
+
+  // Добавление в сравнение
+  let comparisonCount = 0;
+
+  function addToComparison() {
+    comparisonCount++;
+    const amount = parseFloat(amountInput.value);
+    const term = parseInt(termInput.value);
+    const rate = parseFloat(rateInput.value);
+    const result = calculateLoan(amount, term, rate);
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>Вариант ${comparisonCount}</td>
+      <td>${amount.toLocaleString()} ₽</td>
+      <td>${term} мес.</td>
+      <td>${rate}%</td>
+      <td>${result.monthlyPayment.toLocaleString()} ₽</td>
+      <td>${result.totalPayment.toLocaleString()} ₽</td>
+      <td>${result.overpayment.toLocaleString()} ₽</td>
+    `;
+    comparisonTable.appendChild(row);
+  }
+
+  // Обработчики событий
+  calculateBtn.addEventListener('click', updateResults);
+  addToComparisonBtn.addEventListener('click', addToComparison);
+
+  // Расчёт при загрузке страницы
+  updateResults();
+ });
+
+</script>
+    </div>
+  </div>
+</body>
+</html>

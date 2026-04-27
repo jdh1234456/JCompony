@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мониторы</title>
+    <link rel="stylesheet" href="monitors.css">
+</head>
+<body>
+    <div>
+    <header class="header">
+        <div class="container">
+            <div class="logo">JCompony</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="catalog.html" class="nav-link">Каталог</a>
+                <a href="promotions.html" class="nav-link">Акции</a>
+            </nav>
+        </div>
+    </header>
+
+        <!-- Фильтры -->
+        <div>
+            <button onclick="filterMonitors('all')" class="filter-btn active" data-size="all">Все</button>
+            <button onclick="filterMonitors('24')" class="filter-btn" data-size="24">24″</button>
+            <button onclick="filterMonitors('27')" class="filter-btn" data-size="27">27″</button>
+            <button onclick="filterMonitors('32')" class="filter-btn" data-size="32">32″</button>
+        </div>
+
+        <!-- Блок для отображения мониторов -->
+        <div id="monitors"></div>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <button id="prev-page" onclick="prevPage()" disabled>Назад</button>
+            <span id="page-info">Страница 1</span>
+            <button id="next-page" onclick="nextPage()">Вперёд</button>
+        </div>
+
+        <!-- Ссылка на главную -->
+        <a href="/" class="home-link">← На главную</a>
+    </div>
+
+    <script>
+        // Данные о мониторах
+        const monitors = [
+            { id: 1, name: "Монитор AOC 24B2H", size: "24", price: "12 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+24″" },
+            { id: 2, name: "Монитор Dell S2721D", size: "27", price: "25 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+27″" },
+            { id: 3, name: "Монитор Samsung Odyssey G7", size: "32", price: "45 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+32″" },
+            { id: 4, name: "Монитор LG 24MP400-B", size: "24", price: "14 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+LG+24″" },
+            { id: 5, name: "Монитор ASUS TUF Gaming VG279QL1A", size: "27", price: "30 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+ASUS+27″" },
+            { id: 6, name: "Монитор Acer Predator X32", size: "32", price: "80 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+Acer+32″" }
+        ];
+
+        const itemsPerPage = 3;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        // Функция отображения мониторов
+        function renderMonitors() {
+            const filteredMonitors = currentFilter === 'all'
+                ? monitors
+                : monitors.filter(m => m.size === currentFilter);
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageMonitors = filteredMonitors.slice(start, end);
+
+            const monitorsContainer = document.getElementById('monitors');
+            monitorsContainer.innerHTML = '';
+
+            pageMonitors.forEach(monitor => {
+                const monitorElement = document.createElement('div');
+                // Уникальные классы:
+                // monitor-card — общий класс для всех карточек
+                // monitor-card-{id} — уникальный класс по ID
+                // monitor-{size} — класс по диагонали монитора
+                monitorElement.className = `monitor-card monitor-card-${monitor.id} monitor-${monitor.size}`;
+                monitorElement.innerHTML = `
+                    <h3>${monitor.name}</h3>
+            <img src="${monitor.image}" alt="${monitor.name}" width="200">
+            <p>Диагональ: ${monitor.size}″</p>
+            <p class="price">Цена: ${monitor.price}</p>
+                `;
+                monitorsContainer.appendChild(monitorElement);
+            });
+
+            // Обновление состояния кнопок пагинации
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = end >= filteredMonitors.length;
+            document.getElementById('page-info').textContent = `Страница ${currentPage}`;
+        }
+
+        // Функции фильтрации
+        function filterMonitors(size) {
+            currentFilter = size;
+            currentPage = 1; // Сбрасываем на первую страницу при смене фильтра
+            renderMonitors();
+
+            // Обновляем активные кнопки фильтров
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Функции пагинации
+        function nextPage() {
+            if (document.getElementById('next-page').disabled) return;
+            currentPage++;
+            renderMonitors();
+        }
+
+        function prevPage() {
+            if (document.getElementById('prev-page').disabled) return;
+            currentPage--;
+            renderMonitors();
+        }
+
+        // Инициализация при загрузке страницы
+        window.onload = renderMonitors;
+    </script>
+</body>
+</html>
