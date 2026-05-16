@@ -58,7 +58,10 @@ width: 500px;
     display: flex;
     flex-direction: column;
 }
-
+.buttonCard{
+    border: none;
+    border-radius: 15px;
+}
 
 #next-page{
     width: 65px;

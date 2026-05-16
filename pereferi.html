@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Периферийные устройства</title>
     <link rel="stylesheet" href="pereferi.css">
+             <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
     <div>
@@ -38,7 +43,7 @@
             <button id="next-page" onclick="nextPage()">Вперёд</button>
         </div>
 
-
+<script src="Cart.JS"></script>
     <script>
         // Данные о периферийных устройствах
         const peripherals = [
@@ -81,6 +86,7 @@
             <img src="${peripheral.image}" alt="${peripheral.name}" width="200">
             <p>Тип: ${peripheral.type}</p>
             <p class="price">Цена: ${peripheral.price}</p>
+                    <button class="buttonCard">купить</button>
                 `;
                 peripheralsContainer.appendChild(peripheralElement);
             });

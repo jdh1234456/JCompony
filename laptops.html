@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ноутбуки в продаже</title>
+             <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="laptops.css">
+
 </head>
 <body>
     <div>
@@ -39,16 +45,16 @@
 
 
     </div>
-
+<script src="Cart.JS"></script>
     <script>
    // Данные о ноутбуках
 const products = [
     { id: 1, name: "Ноутбук A", color: "white", price: "50 000 руб.", image: "https://avatars.mds.yandex.net/get-mpic/11404302/2a00000196399137de42b36add9916b39020/orig" },
-    { id: 2, name: "Ноутбук B", color: "orange", price: "60 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжевый+ноутбук" },
-    { id: 3, name: "Ноутбук C", color: "orange-gray", price: "70 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжево-серый+ноутбук" },
-    { id: 4, name: "Ноутбук D", color: "white", price: "55 000 руб.", image: "https://via.placeholder.com/300x200?text=Белый+ноутбук+2" },
-    { id: 5, name: "Ноутбук E", color: "orange", price: "65 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжевый+ноутбук+2" },
-    { id: 6, name: "Ноутбук F", color: "orange-gray", price: "75 000 руб.", image: "https://via.placeholder.com/300x200?text=Оранжево-серый+ноутбук+2" }
+    { id: 2, name: "Lenovo Yoga 730", color: "orange", price: "60 000 руб.", image: "https://i.ebayimg.com/images/g/nBQAAOSwqehoLTrw/s-l1600.jpg" },
+    { id: 3, name: "SUS ROG Strix G18", color: "orange-gray", price: "70 000 руб.", image: "https://ir.ozone.ru/s3/multimedia-1-w/7012700312.jpg" },
+    { id: 4, name: "HP, 15.6, Pavilion 6", color: "white", price: "55 000 руб.", image: "https://ir.ozone.ru/s3/multimedia-1-w/7177050608.jpg" },
+    { id: 5, name: "MSI GT77", color: "orange", price: "65 000 руб.", image: "https://avatars.mds.yandex.net/get-mpic/3725687/img_id2092426998682185553.png/orig" },
+    { id: 6, name: "ASUS ROG Zephyrus G16 GU603ZU-N4050", color: "orange-gray", price: "75 000 руб.", image: "https://avatars.mds.yandex.net/get-mpic/11312687/2a0000018b4cc3d26e4ee370fccf0b76bdbb/orig" }
 ];
 
 const itemsPerPage = 3;
@@ -78,6 +84,7 @@ function renderProducts() {
             <img src="${product.image}" alt="${product.name}" width="200">
             <p>Цвет: ${product.color}</p>
             <p class="price">Цена: ${product.price}</p>
+                        <button class="buttonCard">купить</button>
         `;
         productsContainer.appendChild(productElement);
     });

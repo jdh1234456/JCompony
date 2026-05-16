@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мониторы</title>
     <link rel="stylesheet" href="monitors.css">
+             <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
     <div>
@@ -40,16 +45,16 @@
         <!-- Ссылка на главную -->
         <a href="/" class="home-link">← На главную</a>
     </div>
-
+<script src="Cart.JS"></script>
     <script>
         // Данные о мониторах
         const monitors = [
-            { id: 1, name: "Монитор AOC 24B2H", size: "24", price: "12 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+24″" },
-            { id: 2, name: "Монитор Dell S2721D", size: "27", price: "25 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+27″" },
-            { id: 3, name: "Монитор Samsung Odyssey G7", size: "32", price: "45 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+32″" },
-            { id: 4, name: "Монитор LG 24MP400-B", size: "24", price: "14 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+LG+24″" },
-            { id: 5, name: "Монитор ASUS TUF Gaming VG279QL1A", size: "27", price: "30 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+ASUS+27″" },
-            { id: 6, name: "Монитор Acer Predator X32", size: "32", price: "80 000 руб.", image: "https://via.placeholder.com/300x200?text=Монитор+Acer+32″" }
+            { id: 1, name: "Монитор AOC 24B2H", size: "24", price: "12 000 руб.", image: "https://main-cdn.sbermegamarket.ru/big2/hlr-system/-15/085/816/565/291/69/100054468353b1.png" },
+            { id: 2, name: "Монитор Dell S2721D", size: "27", price: "25 000 руб.", image: "https://i.rtings.com/assets/products/4r2P7igo/dell-s2719dgf/design-medium.jpg?format=auto" },
+            { id: 3, name: "Монитор Samsung Odyssey G7", size: "32", price: "45 000 руб.", image: "https://cdn1.technopark.ru/technopark/photos_resized/product/1000_1000/649970/2_649970.jpg" },
+            { id: 4, name: "Монитор LG 24MP400-B", size: "24", price: "14 000 руб.", image: "https://cdn.rbt.ru/images/gen/item_image/image/9508/24/950767_r2449.jpg" },
+            { id: 5, name: "Монитор ASUS TUF Gaming VG279QL1A", size: "27", price: "30 000 руб.", image: "https://cdn1.technopark.ru/technopark/photos_resized/product/1000_1000/285959/1_285959.jpg" },
+            { id: 6, name: "Монитор Acer Predator X32", size: "32", price: "80 000 руб.", image: "https://cdn.mos.cms.futurecdn.net/PnZqQHjsbWi9NGGPmNfvJo.jpg" }
         ];
 
         const itemsPerPage = 3;
@@ -81,6 +86,7 @@
             <img src="${monitor.image}" alt="${monitor.name}" width="200">
             <p>Диагональ: ${monitor.size}″</p>
             <p class="price">Цена: ${monitor.price}</p>
+            <button class="buttonCard">купить</button>
                 `;
                 monitorsContainer.appendChild(monitorElement);
             });
